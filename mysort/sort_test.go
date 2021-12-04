@@ -42,6 +42,17 @@ func TestSelectionSort(t *testing.T) {
 	}
 }
 
+func TestInsertionSort(t *testing.T) {
+	for i := 0; i < 1; i++ {
+		nums := genRandNums(10)
+		InsertionSort(nums)
+
+		if !sort.IsSorted(nums) {
+			t.Errorf("%+v", nums)
+		}
+	}
+}
+
 func BenchmarkBubble(b *testing.B) {
 	nums := genRandNums(10)
 	b.ResetTimer()
@@ -57,5 +68,14 @@ func BenchmarkSelectionSort(b *testing.B) {
 
 	for i := 0; i < b.N; i++ {
 		SelectionSort(nums)
+	}
+}
+
+func BenchmarkInsertionSort(b *testing.B) {
+	nums := genRandNums(10)
+	b.ResetTimer()
+
+	for i := 0; i < b.N; i++ {
+		InsertionSort(nums)
 	}
 }

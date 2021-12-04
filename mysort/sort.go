@@ -25,3 +25,11 @@ func SelectionSort(nums []int) {
 		swap(nums, i, min)
 	}
 }
+
+func InsertionSort(nums []int) {
+	for i := 1; i < len(nums); i++ {
+		for j := i - 1; j >= 0 && nums[j] > nums[j+1]; j-- {
+			swap(nums, j, j+1)
+		}
+	}
+}
