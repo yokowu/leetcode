@@ -31,11 +31,31 @@ func TestBubbleSort(t *testing.T) {
 	}
 }
 
+func TestSelectionSort(t *testing.T) {
+	for i := 0; i < 1000000; i++ {
+		nums := genRandNums(10)
+		SelectionSort(nums)
+
+		if !sort.IsSorted(nums) {
+			t.Errorf("%+v", nums)
+		}
+	}
+}
+
 func BenchmarkBubble(b *testing.B) {
 	nums := genRandNums(10)
 	b.ResetTimer()
 
 	for i := 0; i < b.N; i++ {
 		BubbleSort(nums)
+	}
+}
+
+func BenchmarkSelectionSort(b *testing.B) {
+	nums := genRandNums(10)
+	b.ResetTimer()
+
+	for i := 0; i < b.N; i++ {
+		SelectionSort(nums)
 	}
 }
