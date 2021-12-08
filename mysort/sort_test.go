@@ -43,9 +43,20 @@ func TestSelectionSort(t *testing.T) {
 }
 
 func TestInsertionSort(t *testing.T) {
-	for i := 0; i < 1; i++ {
+	for i := 0; i < 1000000; i++ {
 		nums := genRandNums(10)
 		InsertionSort(nums)
+
+		if !sort.IsSorted(nums) {
+			t.Errorf("%+v", nums)
+		}
+	}
+}
+
+func TestMergeSort(t *testing.T) {
+	for i := 0; i < 1000000; i++ {
+		nums := genRandNums(10)
+		MergeSort(nums)
 
 		if !sort.IsSorted(nums) {
 			t.Errorf("%+v", nums)
@@ -77,5 +88,14 @@ func BenchmarkInsertionSort(b *testing.B) {
 
 	for i := 0; i < b.N; i++ {
 		InsertionSort(nums)
+	}
+}
+
+func BenchmarkMergeSort(b *testing.B) {
+	nums := genRandNums(10)
+	b.ResetTimer()
+
+	for i := 0; i < b.N; i++ {
+		MergeSort(nums)
 	}
 }
