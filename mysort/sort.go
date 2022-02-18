@@ -1,5 +1,7 @@
 package mysort
 
+import "math"
+
 func swap(nums []int, i, j int) {
 	nums[i], nums[j] = nums[j], nums[i]
 }
@@ -36,6 +38,31 @@ func InsertionSort(nums []int) {
 
 func MergeSort(nums []int) {
 	mergeSort(nums, 0, len(nums)-1)
+}
+
+func MergeSort2(nums []int) {
+	if nums == nil || len(nums) < 2 {
+		return
+	}
+
+	mergeSize := 1
+	n := len(nums)
+	for mergeSize < n {
+		l := 0
+		for l < n {
+			m := l + mergeSize - 1
+			if m >= n {
+				break
+			}
+			r := int(math.Min(float64(m+mergeSize), float64(n-1)))
+			merge(nums, l, m, r)
+			l = r + 1
+		}
+		if mergeSize > n/2 {
+			break
+		}
+		mergeSize <<= 1
+	}
 }
 
 func mergeSort(nums []int, L, R int) {

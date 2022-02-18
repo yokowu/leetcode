@@ -1,16 +1,13 @@
 package main
 
 import (
-	"github.com/yokowu/leetcode/linked"
+	"fmt"
+
+	"github.com/yokowu/leetcode/mysort"
 )
 
 func main() {
-	head := linked.New(1)
-	head = linked.Add(head, 2)
-	head = linked.Add(head, 3)
-	head = linked.Add(head, 4)
-	head = linked.Add(head, 5)
-	linked.Show(head)
-	head = linked.Reverse(head)
-	linked.Show(head)
+	a := []int{3, 2, 6, 3, 1, 100}
+	mysort.MergeSort2(a)
+	fmt.Println(a)
 }
