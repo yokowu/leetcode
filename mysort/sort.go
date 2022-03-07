@@ -105,3 +105,39 @@ func merge(nums []int, L, M, R int) {
 		nums[L+i] = newer[i]
 	}
 }
+
+// Partition 给定一个数组nums, 要求把数组中小于target的数放在左边, 大于target的数放在右边
+func Partition(nums []int, target int) {
+	min := 0
+	i := 0
+	for i < len(nums) {
+		if nums[i] <= target {
+			swap(nums, i, min)
+			min++
+		}
+		i++
+	}
+
+}
+
+// Partition2 给定一个数组nums,
+// 要求把数组中小于target的数放左边,
+// 等于target的数放中间
+// 大于target的放右边
+func Partition2(nums []int, target int) {
+	min := 0
+	max := len(nums) - 1
+	i := 0
+	for i <= max {
+		if nums[i] < target {
+			swap(nums, i, min)
+			min++
+			i++
+		} else if nums[i] == target {
+			i++
+		} else if nums[i] > target {
+			swap(nums, i, max)
+			max--
+		}
+	}
+}
