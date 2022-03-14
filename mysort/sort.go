@@ -40,6 +40,16 @@ func MergeSort(nums []int) {
 	mergeSort(nums, 0, len(nums)-1)
 }
 
+func mergeSort(nums []int, L, R int) {
+	if L == R {
+		return
+	}
+	mid := ((R - L) / 2) + L
+	mergeSort(nums, L, mid)
+	mergeSort(nums, mid+1, R)
+	merge(nums, L, mid, R)
+}
+
 func MergeSort2(nums []int) {
 	if nums == nil || len(nums) < 2 {
 		return
@@ -65,16 +75,6 @@ func MergeSort2(nums []int) {
 	}
 }
 
-func mergeSort(nums []int, L, R int) {
-	if L == R {
-		return
-	}
-	mid := ((R - L) / 2) + L
-	mergeSort(nums, L, mid)
-	mergeSort(nums, mid+1, R)
-	merge(nums, L, mid, R)
-}
-
 func merge(nums []int, L, M, R int) {
 	newer := make([]int, R-L+1)
 	i := 0
@@ -91,16 +91,19 @@ func merge(nums []int, L, M, R int) {
 		}
 		i++
 	}
+
 	for p1 <= M {
 		newer[i] = nums[p1]
-		i++
 		p1++
+		i++
 	}
+
 	for p2 <= R {
 		newer[i] = nums[p2]
 		p2++
 		i++
 	}
+
 	for i := 0; i < len(newer); i++ {
 		nums[L+i] = newer[i]
 	}
