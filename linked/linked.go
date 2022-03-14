@@ -2,95 +2,47 @@ package linked
 
 import "fmt"
 
-type Linked struct {
-	len  int
-	head *node
-}
-
-type node struct {
-	next *node
+type ListNode struct {
 	Val  int
+	Next *ListNode
 }
 
-func New() *Linked {
-	return &Linked{
-		len:  0,
-		head: nil,
+func New(val int) *ListNode {
+	return &ListNode{
+		Val: val,
 	}
 }
 
-func (l *Linked) Insert(val int) {
-	n := &node{Val: val}
-	n.next = l.head
-	l.head = n
-	l.len++
-}
-
-func (l *Linked) Append(val int) {
-	n := &node{Val: val}
-	if l.len == 0 {
-		l.head = n
-		l.len++
-		return
+func Append(head *ListNode, val int) *ListNode {
+	n := &ListNode{Val: val}
+	if head == nil {
+		head = n
 	}
 
-	cur := l.head
-	for cur.next != nil {
-		cur = cur.next
+	cur := head
+	for cur.Next != nil {
+		cur = cur.Next
 	}
-	cur.next = n
-	l.len++
+	cur.Next = n
+	return head
 }
 
-func (l *Linked) Reverse() {
-	var n *node
-	for l.head != nil {
-		next := l.head.next
-		l.head.next = n
-		n = l.head
-		l.head = next
+func RemoveElements(head *ListNode, val int) *ListNode {
+	dummy := &ListNode{Next: head}
+	for tmp := dummy; tmp.Next != nil; {
+		if tmp.Next.Val == val {
+			tmp.Next = tmp.Next.Next
+		} else {
+			tmp = tmp.Next
+		}
 	}
-	l.head = n
+	return dummy.Next
 }
 
-func (l *Linked) Show() {
-	cur := l.head
+func Show(head *ListNode) {
+	cur := head
 	for cur != nil {
 		fmt.Println(cur.Val)
-		cur = cur.next
+		cur = cur.Next
 	}
 }
-
-func (l *Linked) Len() {
-	fmt.Printf("Linked len: %d", l.len)
-}
-
-// // MidUp 输入链表头节点, 奇数长度返回中点, 偶数长度返回上中点
-// func MidUp(head *Node) *Node {
-// 	if head == nil || head.Next == nil || head.Next.Next == nil {
-// 		return head
-// 	}
-
-// 	slow := head.Next
-// 	fast := head.Next.Next
-// 	for fast.Next != nil && fast.Next.Next != nil {
-// 		slow = slow.Next
-// 		fast = fast.Next.Next
-// 	}
-// 	return slow
-// }
-
-// // MidDown 输入链表头节点, 奇数长度返回中点, 偶数长度返回下中点
-// func MidDown(head *Node) *Node {
-// 	if head == nil || head.Next == nil {
-// 		return head
-// 	}
-
-// 	slow := head.Next
-// 	fast := head.Next
-// 	for fast.Next != nil && fast.Next.Next != nil {
-// 		slow = slow.Next
-// 		fast = fast.Next.Next
-// 	}
-// 	return slow
-// }
