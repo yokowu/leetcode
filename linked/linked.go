@@ -64,3 +64,20 @@ func HasCycle(head *ListNode) bool {
 	}
 	return false
 }
+
+func GetIntersectionNode(headA, headB *ListNode) *ListNode {
+	m := make(map[*ListNode]*ListNode)
+
+	for headA != nil {
+		m[headA] = headA
+		headA = headA.Next
+	}
+
+	for headB != nil {
+		if n, ok := m[headB]; ok {
+			return n
+		}
+		headB = headB.Next
+	}
+	return nil
+}
