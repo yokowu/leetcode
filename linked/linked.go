@@ -1,6 +1,8 @@
 package linked
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type ListNode struct {
 	Val  int
@@ -45,4 +47,20 @@ func Show(head *ListNode) {
 		fmt.Println(cur.Val)
 		cur = cur.Next
 	}
+}
+
+func HasCycle(head *ListNode) bool {
+	if head == nil || head.Next == nil {
+		return false
+	}
+
+	slow, fast := head, head.Next
+	for fast.Next != nil && fast.Next.Next != nil {
+		slow = slow.Next
+		fast = fast.Next.Next
+		if slow == fast {
+			return true
+		}
+	}
+	return false
 }
