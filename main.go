@@ -7,17 +7,10 @@ import (
 )
 
 func main() {
-	n := linked.ListNode{
-		Val: 10,
-	}
-	n.Next = &linked.ListNode{
-		Val: 5,
-		Next: &linked.ListNode{
-			Val:  3,
-			Next: &n,
-		},
-	}
+	node := linked.New(1)
+	node = linked.Append(node, 2)
+	node = linked.Append(node, 2)
+	node = linked.Append(node, 1)
 
-	b := linked.HasCycle(&n)
-	fmt.Println(b)
+	fmt.Println(linked.IsPalindrome(node))
 }

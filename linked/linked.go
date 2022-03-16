@@ -102,3 +102,18 @@ func GetIntersectionNode2(headA, headB *ListNode) *ListNode {
 	}
 	return pa
 }
+
+func IsPalindrome(head *ListNode) bool {
+	list := make([]int, 0)
+	for head != nil {
+		list = append(list, head.Val)
+		head = head.Next
+	}
+
+	for i, j := 0, len(list)-1; i <= j; i, j = i+1, j-1 {
+		if list[i] != list[j] {
+			return false
+		}
+	}
+	return true
+}
