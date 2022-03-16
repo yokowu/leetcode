@@ -9,8 +9,10 @@ import (
 func main() {
 	node := linked.New(1)
 	node = linked.Append(node, 2)
+	node = linked.Append(node, 3)
 	node = linked.Append(node, 2)
 	node = linked.Append(node, 1)
 
-	fmt.Println(linked.IsPalindrome(node))
+	b := linked.IsPalindrome2(node)
+	fmt.Println(b)
 }

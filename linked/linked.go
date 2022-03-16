@@ -49,6 +49,30 @@ func Show(head *ListNode) {
 	}
 }
 
+func ReverseList(head *ListNode) *ListNode {
+	var prev, cur *ListNode = nil, head
+	for cur != nil {
+		next := cur.Next
+		cur.Next = prev
+		prev = cur
+		cur = next
+	}
+	return prev
+}
+
+func Center(head *ListNode) *ListNode {
+	if head == nil {
+		return nil
+	}
+
+	slow, fast := head, head
+	for fast.Next != nil && fast.Next.Next != nil {
+		slow = slow.Next
+		fast = fast.Next.Next
+	}
+	return slow
+}
+
 func HasCycle(head *ListNode) bool {
 	if head == nil || head.Next == nil {
 		return false
@@ -115,5 +139,23 @@ func IsPalindrome(head *ListNode) bool {
 			return false
 		}
 	}
+	return true
+}
+
+func IsPalindrome2(head *ListNode) bool {
+	center := Center(head)
+	reverse := ReverseList(center.Next)
+
+	p1 := head
+	p2 := reverse
+	for p1 != nil && p2 != nil {
+		if p1.Val != p2.Val {
+			return false
+		}
+		p1 = p1.Next
+		p2 = p2.Next
+	}
+
+	center.Next = ReverseList(reverse)
 	return true
 }
