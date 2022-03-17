@@ -1,16 +1,14 @@
 package main
 
-import (
-	"github.com/yokowu/leetcode/linked"
-)
+import "github.com/yokowu/leetcode/hashset"
 
 func main() {
-	l1 := linked.New(1)
-	l1 = linked.Append(l1, 2)
-	n := linked.New(3)
-	l1 = linked.AppendNode(l1, n)
-	l1 = linked.Append(l1, 6)
-
-	linked.DeleteNode(n)
-	linked.Show(l1)
+	set := hashset.Constructor()
+	set.Add(1)
+	set.Add(10)
+	set.Add(11)
+	set.Add(1)
+	set.Add(100)
+	set.Remove(10)
+	set.Show()
 }
