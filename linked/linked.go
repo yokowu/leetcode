@@ -15,6 +15,19 @@ func New(val int) *ListNode {
 	}
 }
 
+func AppendNode(head *ListNode, node *ListNode) *ListNode {
+	if head == nil {
+		return node
+	}
+
+	cur := head
+	for cur.Next != nil {
+		cur = cur.Next
+	}
+	cur.Next = node
+	return head
+}
+
 func Append(head *ListNode, val int) *ListNode {
 	n := &ListNode{Val: val}
 	if head == nil {
@@ -180,4 +193,9 @@ func IsPalindrome2(head *ListNode) bool {
 
 	center.Next = ReverseList(reverse)
 	return true
+}
+
+func DeleteNode(node *ListNode) {
+	node.Val = node.Next.Val
+	node.Next = node.Next.Next
 }
