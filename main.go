@@ -1,14 +1,22 @@
 package main
 
-import "github.com/yokowu/leetcode/hashset"
+import (
+	"fmt"
+
+	"github.com/yokowu/leetcode/linked"
+)
 
 func main() {
-	set := hashset.Constructor()
-	set.Add(1)
-	set.Add(10)
-	set.Add(11)
-	set.Add(1)
-	set.Add(100)
-	set.Remove(10)
-	set.Show()
+	root := linked.New(1)
+	root = linked.Append(root, 2)
+	root = linked.Append(root, 3)
+	root = linked.Append(root, 4)
+	root = linked.Append(root, 5)
+	root = linked.Append(root, 6)
+
+	linked.Show(root)
+
+	fmt.Println("-----")
+	root = linked.MiddleNode(root)
+	linked.Show(root)
 }
