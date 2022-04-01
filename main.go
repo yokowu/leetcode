@@ -17,6 +17,6 @@ func main() {
 	linked.Show(root)
 
 	fmt.Println("-----")
-	root = linked.MiddleNode(root)
+	root = linked.RemoveNthFromEnd(root, 2)
 	linked.Show(root)
 }
