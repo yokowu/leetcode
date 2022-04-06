@@ -229,3 +229,28 @@ func RemoveNthFromEnd(head *ListNode, n int) *ListNode {
 	slow.Next = slow.Next.Next
 	return dummy.Next
 }
+
+func RotateRight(head *ListNode, k int) *ListNode {
+	if k == 0 || head == nil || head.Next == nil {
+		return head
+	}
+
+	n := 1
+	tail := head
+	for tail.Next != nil {
+		tail = tail.Next
+		n++
+	}
+	diff := n - k%n
+	if diff == n {
+		return head
+	}
+	tail.Next = head
+	for diff > 0 {
+		tail = tail.Next
+		diff--
+	}
+	ret := tail.Next
+	tail.Next = nil
+	return ret
+}

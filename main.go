@@ -17,6 +17,6 @@ func main() {
 	linked.Show(root)
 
 	fmt.Println("-----")
-	root = linked.RemoveNthFromEnd(root, 2)
+	root = linked.RotateRight(root, 2)
 	linked.Show(root)
 }
