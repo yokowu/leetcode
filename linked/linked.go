@@ -254,3 +254,28 @@ func RotateRight(head *ListNode, k int) *ListNode {
 	tail.Next = nil
 	return ret
 }
+
+func RotateRight2(head *ListNode, k int) *ListNode {
+	n := 0
+	for tmp := head; tmp != nil; tmp = tmp.Next {
+		n++
+	}
+	step := k % n
+	if step == 0 {
+		return head
+	}
+
+	slow, fast := head, head
+	for step > 0 && fast.Next != nil {
+		fast = fast.Next
+		step--
+	}
+	for fast.Next != nil {
+		slow = slow.Next
+		fast = fast.Next
+	}
+	newHead := slow.Next
+	slow.Next = nil
+	fast.Next = head
+	return newHead
+}
