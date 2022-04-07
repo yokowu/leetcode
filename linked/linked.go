@@ -318,3 +318,38 @@ func Partition(head *ListNode, x int) *ListNode {
 	large.Next = nil
 	return smallH.Next
 }
+
+func ReverseBetween(head *ListNode, left, right int) *ListNode {
+	dummy := &ListNode{Next: head}
+	pre := dummy
+	for i := 0; i < left-1; i++ {
+		pre = pre.Next
+	}
+
+	end := pre
+	for i := 0; i < right-left+1; i++ {
+		end = end.Next
+	}
+
+	leftHead := pre.Next
+	curr := end.Next
+
+	pre.Next = nil
+	end.Next = nil
+
+	reverse(leftHead)
+
+	pre.Next = end
+	leftHead.Next = curr
+	return dummy.Next
+}
+
+func reverse(head *ListNode) {
+	pre, cur := &ListNode{}, head
+	for cur != nil {
+		next := cur.Next
+		cur.Next = pre
+		pre = cur
+		cur = next
+	}
+}
