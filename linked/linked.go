@@ -370,3 +370,23 @@ func ReverseBetween2(head *ListNode, left, right int) *ListNode {
 	}
 	return dummy.Next
 }
+
+func DetectCycle(head *ListNode) *ListNode {
+	slow, fast := head, head
+	for fast != nil {
+		if fast.Next == nil {
+			return nil
+		}
+		slow = slow.Next
+		fast = fast.Next.Next
+		if slow == fast {
+			p := head
+			for p != slow {
+				slow = slow.Next
+				p = p.Next
+			}
+			return p
+		}
+	}
+	return nil
+}
