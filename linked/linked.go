@@ -390,3 +390,40 @@ func DetectCycle(head *ListNode) *ListNode {
 	}
 	return nil
 }
+
+func MergeSort(head *ListNode) *ListNode {
+	l := 0
+	for tmp := head; tmp != nil; tmp = tmp.Next {
+		l++
+	}
+
+	dummy := &ListNode{Next: head}
+	for ms := 1; ms < l; ms <<= 1 {
+		pre, cur := dummy, dummy.Next
+		for cur != nil {
+			h1 := cur
+			for i := 1; i < ms && cur.Next != nil; i++ {
+				cur = cur.Next
+			}
+
+			h2 := cur.Next
+			cur.Next = nil
+			cur = h2
+			for i := 1; i < ms && cur != nil && cur.Next != nil; i++ {
+				cur = cur.Next
+			}
+
+			var next *ListNode
+			if cur != nil {
+				next = cur.Next
+				cur.Next = nil
+			}
+			pre.Next = MergeTwoLists(h1, h2)
+			for pre.Next != nil {
+				pre = pre.Next
+			}
+			cur = next
+		}
+	}
+	return dummy.Next
+}

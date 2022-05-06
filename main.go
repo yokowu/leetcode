@@ -9,13 +9,13 @@ import (
 func main() {
 	root := linked.New(1)
 	root = linked.Append(root, 2)
-	root = linked.Append(root, 3)
-	root = linked.Append(root, 4)
 	root = linked.Append(root, 5)
+	root = linked.Append(root, 4)
+	root = linked.Append(root, 3)
 
 	linked.Show(root)
 
 	fmt.Println("-----")
-	root = linked.ReverseBetween(root, 1, 5)
+	root = linked.MergeSort(root)
 	linked.Show(root)
 }
