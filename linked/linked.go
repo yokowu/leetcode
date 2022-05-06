@@ -427,3 +427,18 @@ func MergeSort(head *ListNode) *ListNode {
 	}
 	return dummy.Next
 }
+
+func OddEvenList(head *ListNode) *ListNode {
+	if head == nil {
+		return head
+	}
+	odd, even, eh := head, head.Next, head.Next
+	for even != nil && even.Next != nil {
+		odd.Next = even.Next
+		odd = odd.Next
+		even.Next = odd.Next
+		even = even.Next
+	}
+	odd.Next = eh
+	return head
+}
