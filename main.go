@@ -1,21 +1,16 @@
 package main
 
-import (
-	"fmt"
-
-	"github.com/yokowu/leetcode/linked"
-)
+import "github.com/yokowu/leetcode/linked"
 
 func main() {
-	root := linked.New(1)
-	root = linked.Append(root, 2)
-	root = linked.Append(root, 3)
-	root = linked.Append(root, 4)
-	root = linked.Append(root, 5)
+	l1 := linked.New(7)
+	l1 = linked.Append(l1, 2)
+	l1 = linked.Append(l1, 4)
+	l1 = linked.Append(l1, 3)
+	l2 := linked.New(5)
+	l2 = linked.Append(l2, 6)
+	l2 = linked.Append(l2, 4)
 
-	linked.Show(root)
-
-	fmt.Println("-----")
-	root = linked.OddEvenList(root)
-	linked.Show(root)
+	l3 := linked.AddTwoNumbers(l1, l2)
+	linked.Show(l3)
 }

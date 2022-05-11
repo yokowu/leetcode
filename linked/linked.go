@@ -442,3 +442,37 @@ func OddEvenList(head *ListNode) *ListNode {
 	odd.Next = eh
 	return head
 }
+
+func AddTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
+	s1, s2 := make([]int, 0), make([]int, 0)
+	for n := l1; n != nil; n = n.Next {
+		s1 = append(s1, n.Val)
+	}
+	for n := l2; n != nil; n = n.Next {
+		s2 = append(s2, n.Val)
+	}
+
+	var res *ListNode
+	carry := 0
+	for len(s1) > 0 || len(s2) > 0 || carry > 0 {
+		a := 0
+		s1, a = pop(s1)
+		b := 0
+		s2, b = pop(s2)
+
+		val := a + b + carry
+		carry = val / 10
+		val %= 10
+		n := &ListNode{Val: val, Next: res}
+		res = n
+	}
+	return res
+}
+
+func pop(ls []int) ([]int, int) {
+	if len(ls) == 0 {
+		return nil, 0
+	}
+	val := ls[len(ls)-1]
+	return ls[:len(ls)-1], val
+}
