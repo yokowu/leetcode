@@ -476,3 +476,24 @@ func pop(ls []int) ([]int, int) {
 	val := ls[len(ls)-1]
 	return ls[:len(ls)-1], val
 }
+
+func SplitListToParts(head *ListNode, k int) []*ListNode {
+	n := 0
+	for node := head; node != nil; node = node.Next {
+		n++
+	}
+	quotient, remainder := n/k, n%k
+	parts := make([]*ListNode, k)
+	for i, node := 0, head; i < k && node != nil; i++ {
+		parts[i] = node
+		size := quotient
+		if i < remainder {
+			size++
+		}
+		for j := 1; j < size; j++ {
+			node = node.Next
+		}
+		node, node.Next = node.Next, nil
+	}
+	return parts
+}
