@@ -497,3 +497,24 @@ func SplitListToParts(head *ListNode, k int) []*ListNode {
 	}
 	return parts
 }
+
+func SwapNodes(head *ListNode, k int) *ListNode {
+	if head == nil || head.Next == nil {
+		return head
+	}
+
+	fast, slow := head, head
+	for i := 1; i < k; i++ {
+		fast = fast.Next
+	}
+	node1 := fast
+	for fast.Next != nil {
+		slow = slow.Next
+		fast = fast.Next
+	}
+	if node1 == slow {
+		return head
+	}
+	node1.Val, slow.Val = slow.Val, node1.Val
+	return head
+}
