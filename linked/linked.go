@@ -518,3 +518,31 @@ func SwapNodes(head *ListNode, k int) *ListNode {
 	node1.Val, slow.Val = slow.Val, node1.Val
 	return head
 }
+
+func NodesBetweenCriticalPoints(head *ListNode) []int {
+	if head == nil || head.Next == nil || head.Next.Next == nil {
+		return []int{-1, -1}
+	}
+
+	min := 1<<31 - 1
+	first, last := -1, -1
+	pre, cur := head, head.Next
+	for i := 1; cur.Next != nil; i++ {
+		next := cur.Next
+		if (cur.Val < pre.Val && cur.Val < next.Val) ||
+			(cur.Val > pre.Val && cur.Val > next.Val) {
+			if first < 0 {
+				first = i
+			}
+			if last > 0 && (i-last) < min {
+				min = i - last
+			}
+			last = i
+		}
+		pre, cur = cur, cur.Next
+	}
+	if first == last {
+		return []int{-1, -1}
+	}
+	return []int{min, last - first}
+}
