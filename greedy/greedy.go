@@ -17,6 +17,7 @@ func LongestPalindrome(s string) int {
 	return res
 }
 
+// 分发饼干
 func FindContentChildren(g, s []int) int {
 	sort.Ints(s)
 	sort.Ints(g)
@@ -31,6 +32,7 @@ func FindContentChildren(g, s []int) int {
 	return i
 }
 
+// 摆动序列
 func WiggleMaxLength(nums []int) int {
 	result := 1
 	preDiff, curDiff := 0, 0
@@ -44,6 +46,7 @@ func WiggleMaxLength(nums []int) int {
 	return result
 }
 
+// 最大子序和
 func MaxSubArray(nums []int) int {
 	result := nums[0]
 	count := 0
