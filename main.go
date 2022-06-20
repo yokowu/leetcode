@@ -7,5 +7,5 @@ import (
 )
 
 func main() {
-	fmt.Println(greedy.WiggleMaxLength([]int{1, 17, 5, 10, 13, 15, 10, 5, 16, 8}))
+	fmt.Println(greedy.MaxSubArray([]int{-2, 1, -3, 4, -1, 2, 1, -5, 4}))
 }
