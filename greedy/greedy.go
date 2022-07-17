@@ -61,3 +61,14 @@ func MaxSubArray(nums []int) int {
 	}
 	return result
 }
+
+// 买卖股票的最佳时机2
+func MaxProfit(prices []int) int {
+	r := 0
+	for i := 1; i < len(prices); i++ {
+		if prices[i]-prices[i-1] > 0 {
+			r += prices[i] - prices[i-1]
+		}
+	}
+	return r
+}

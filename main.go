@@ -7,5 +7,5 @@ import (
 )
 
 func main() {
-	fmt.Println(greedy.MaxSubArray([]int{-2, 1, -3, 4, -1, 2, 1, -5, 4}))
+	fmt.Print(greedy.MaxProfit([]int{1, 2, 3, 4, 5}))
 }
