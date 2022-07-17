@@ -86,3 +86,19 @@ func CanJump(nums []int) bool {
 	}
 	return false
 }
+
+// 跳跃游戏2
+func Jump(nums []int) int {
+	cur, next, ans := 0, 0, 0
+	for i := 0; i < len(nums)-1; i++ {
+		if i+nums[i] > next {
+			next = i + nums[i]
+		}
+
+		if cur == i {
+			cur = next
+			ans++
+		}
+	}
+	return ans
+}
