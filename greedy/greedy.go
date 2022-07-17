@@ -1,6 +1,9 @@
 package greedy
 
-import "sort"
+import (
+	"math"
+	"sort"
+)
 
 func LongestPalindrome(s string) int {
 	chars := make([]int, 128)
@@ -101,4 +104,29 @@ func Jump(nums []int) int {
 		}
 	}
 	return ans
+}
+
+func LargestSumAfterKNeagtions(nums []int, k int) int {
+	sort.Slice(nums, func(i, j int) bool {
+		return math.Abs(float64(nums[i])) > math.Abs(float64(nums[j]))
+	})
+
+	for i := 0; i < len(nums) && k > 0; i++ {
+		if nums[i] < 0 {
+			nums[i] *= -1
+			k--
+		}
+	}
+	if k%2 == 1 {
+		nums[len(nums)-1] *= -1
+	}
+	return sum(nums)
+}
+
+func sum(nums []int) int {
+	sum := 0
+	for _, v := range nums {
+		sum += v
+	}
+	return sum
 }

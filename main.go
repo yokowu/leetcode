@@ -7,5 +7,5 @@ import (
 )
 
 func main() {
-	fmt.Print(greedy.MaxProfit([]int{1, 2, 3, 4, 5}))
+	fmt.Print(greedy.LargestSumAfterKNeagtions([]int{2, -3, -1, 5, -4}, 2))
 }
