@@ -106,7 +106,7 @@ func Jump(nums []int) int {
 	return ans
 }
 
-func LargestSumAfterKNeagtions(nums []int, k int) int {
+func LargestSumAfterKNegations(nums []int, k int) int {
 	sort.Slice(nums, func(i, j int) bool {
 		return math.Abs(float64(nums[i])) > math.Abs(float64(nums[j]))
 	})
@@ -129,4 +129,20 @@ func sum(nums []int) int {
 		sum += v
 	}
 	return sum
+}
+
+func CanCompleteCircuit(gas, cost []int) int {
+	sum, total, start := 0, 0, 0
+	for i := 0; i < len(gas); i++ {
+		sum += gas[i] - cost[i]
+		total += gas[i] - cost[i]
+		if sum < 0 {
+			sum = 0
+			start = i + 1
+		}
+	}
+	if total < 0 {
+		return -1
+	}
+	return start
 }
