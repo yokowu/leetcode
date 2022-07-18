@@ -5,6 +5,13 @@ import (
 	"sort"
 )
 
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
+}
+
 func LongestPalindrome(s string) int {
 	chars := make([]int, 128)
 	for _, v := range s {
@@ -145,4 +152,22 @@ func CanCompleteCircuit(gas, cost []int) int {
 		return -1
 	}
 	return start
+}
+
+func Candy(ratings []int) int {
+	candy := make([]int, len(ratings))
+	for i := 0; i < len(candy); i++ {
+		candy[i] = 1
+	}
+	for i := 1; i < len(ratings); i++ {
+		if ratings[i] > ratings[i-1] {
+			candy[i] = candy[i-1] + 1
+		}
+	}
+	for i := len(ratings) - 2; i >= 0; i-- {
+		if ratings[i] > ratings[i+1] {
+			candy[i] = max(candy[i], candy[i+1]+1)
+		}
+	}
+	return sum(candy)
 }
