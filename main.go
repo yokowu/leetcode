@@ -8,8 +8,8 @@ import (
 
 func main() {
 	fmt.Print(
-		greedy.Candy(
-			[]int{1, 0, 2},
+		greedy.LemonadeChange(
+			[]int{5, 5, 5, 10, 20},
 		),
 	)
 }

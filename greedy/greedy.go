@@ -113,6 +113,7 @@ func Jump(nums []int) int {
 	return ans
 }
 
+// k次取反后最大化的数组和
 func LargestSumAfterKNegations(nums []int, k int) int {
 	sort.Slice(nums, func(i, j int) bool {
 		return math.Abs(float64(nums[i])) > math.Abs(float64(nums[j]))
@@ -138,6 +139,7 @@ func sum(nums []int) int {
 	return sum
 }
 
+// 加油站
 func CanCompleteCircuit(gas, cost []int) int {
 	sum, total, start := 0, 0, 0
 	for i := 0; i < len(gas); i++ {
@@ -154,6 +156,7 @@ func CanCompleteCircuit(gas, cost []int) int {
 	return start
 }
 
+// 分发糖果
 func Candy(ratings []int) int {
 	candy := make([]int, len(ratings))
 	for i := 0; i < len(candy); i++ {
@@ -170,4 +173,31 @@ func Candy(ratings []int) int {
 		}
 	}
 	return sum(candy)
+}
+
+// 柠檬水找零
+func LemonadeChange(bills []int) bool {
+	five, ten := 0, 0
+	for _, v := range bills {
+		switch v {
+		case 5:
+			five++
+		case 10:
+			if five <= 0 {
+				return false
+			}
+			ten++
+			five--
+		case 20:
+			if ten > 0 && five > 0 {
+				ten--
+				five--
+			} else if five >= 3 {
+				five -= 3
+			} else {
+				return false
+			}
+		}
+	}
+	return true
 }
