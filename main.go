@@ -8,12 +8,11 @@ import (
 
 func main() {
 	fmt.Print(
-		greedy.FindMinArrowShots(
+		greedy.EraseOverlapIntervals(
 			[][]int{
-				{10, 16},
-				{2, 8},
-				{1, 6},
-				{7, 12},
+				{1, 2},
+				{1, 2},
+				{1, 2},
 			},
 		),
 	)

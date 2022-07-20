@@ -204,22 +204,35 @@ func LemonadeChange(bills []int) bool {
 
 // 用最少数量的箭引爆气球
 func FindMinArrowShots(points [][]int) int {
-	if len(points) == 0 {
-		return 0
-	}
 	sort.Slice(points, func(i, j int) bool {
-		return points[i][0] < points[j][0]
+		return points[i][1] < points[j][1]
 	})
 
 	r := 1
+	prev := points[0]
 	for i := 1; i < len(points); i++ {
-		if points[i][0] > points[i-1][1] {
+		cur := points[i]
+		if cur[0] > prev[1] {
 			r++
-		} else {
-			if points[i-1][1] < points[i][1] {
-				points[i][1] = points[i-1][1]
-			}
+			prev = cur
 		}
 	}
 	return r
+}
+
+func EraseOverlapIntervals(intervals [][]int) int {
+	sort.Slice(intervals, func(i, j int) bool {
+		return intervals[i][1] < intervals[j][1]
+	})
+
+	r := 1
+	prev := intervals[0]
+	for i := 1; i < len(intervals); i++ {
+		cur := intervals[i]
+		if cur[0] >= prev[1] {
+			r++
+			prev = cur
+		}
+	}
+	return len(intervals) - r
 }
