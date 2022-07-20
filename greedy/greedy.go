@@ -201,3 +201,25 @@ func LemonadeChange(bills []int) bool {
 	}
 	return true
 }
+
+// 用最少数量的箭引爆气球
+func FindMinArrowShots(points [][]int) int {
+	if len(points) == 0 {
+		return 0
+	}
+	sort.Slice(points, func(i, j int) bool {
+		return points[i][0] < points[j][0]
+	})
+
+	r := 1
+	for i := 1; i < len(points); i++ {
+		if points[i][0] > points[i-1][1] {
+			r++
+		} else {
+			if points[i-1][1] < points[i][1] {
+				points[i][1] = points[i-1][1]
+			}
+		}
+	}
+	return r
+}

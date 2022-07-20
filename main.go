@@ -8,8 +8,13 @@ import (
 
 func main() {
 	fmt.Print(
-		greedy.LemonadeChange(
-			[]int{5, 5, 5, 10, 20},
+		greedy.FindMinArrowShots(
+			[][]int{
+				{10, 16},
+				{2, 8},
+				{1, 6},
+				{7, 12},
+			},
 		),
 	)
 }
