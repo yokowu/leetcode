@@ -7,13 +7,6 @@ import (
 )
 
 func main() {
-	fmt.Print(
-		greedy.EraseOverlapIntervals(
-			[][]int{
-				{1, 2},
-				{1, 2},
-				{1, 2},
-			},
-		),
-	)
+	r := greedy.PartitionLabels("ababcbacadefegdehijhklij")
+	fmt.Println(r)
 }

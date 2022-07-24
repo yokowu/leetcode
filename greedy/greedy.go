@@ -220,6 +220,7 @@ func FindMinArrowShots(points [][]int) int {
 	return r
 }
 
+// 无重叠区间
 func EraseOverlapIntervals(intervals [][]int) int {
 	sort.Slice(intervals, func(i, j int) bool {
 		return intervals[i][1] < intervals[j][1]
@@ -235,4 +236,23 @@ func EraseOverlapIntervals(intervals [][]int) int {
 		}
 	}
 	return len(intervals) - r
+}
+
+// 划分字母区间
+func PartitionLabels(s string) []int {
+	m := make(map[rune]int, 0)
+	for i, v := range s {
+		m[v] = i
+	}
+
+	res := make([]int, 0)
+	left, right := 0, 0
+	for i, v := range s {
+		right = max(right, m[v])
+		if i == right {
+			res = append(res, right-left+1)
+			left = i + 1
+		}
+	}
+	return res
 }
