@@ -7,6 +7,11 @@ import (
 )
 
 func main() {
-	r := greedy.PartitionLabels("ababcbacadefegdehijhklij")
+	r := greedy.Merge([][]int{
+		{1, 3},
+		{2, 6},
+		{8, 10},
+		{15, 18},
+	})
 	fmt.Println(r)
 }
