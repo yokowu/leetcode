@@ -278,3 +278,19 @@ func Merge(intervals [][]int) [][]int {
 	res = append(res, prev)
 	return res
 }
+
+// 714. 买卖股票的最佳时机含手续费
+func MaxProfitFee(prices []int, fee int) int {
+	min, r := prices[0], 0
+	for i := 1; i < len(prices); i++ {
+		if prices[i] < min {
+			min = prices[i]
+		}
+
+		if prices[i] > min+fee {
+			r += prices[i] - min - fee
+			min = prices[i] - fee
+		}
+	}
+	return r
+}
