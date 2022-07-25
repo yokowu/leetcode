@@ -1,11 +1,18 @@
 package main
 
 import (
-	"fmt"
-
-	"github.com/yokowu/leetcode/greedy"
+	"github.com/yokowu/leetcode/tree"
 )
 
 func main() {
-	fmt.Println(greedy.MaxProfitFee([]int{1, 3, 2, 8, 4, 9}, 2))
+	t := &tree.NodeTree{
+		Left: &tree.NodeTree{
+			Val: 10,
+		},
+		Right: &tree.NodeTree{
+			Val: 11,
+		},
+		Val: 5,
+	}
+	tree.PreOrder(t)
 }
