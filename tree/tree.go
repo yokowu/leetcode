@@ -64,41 +64,68 @@ func (s *Stack) Pop() *NodeTree {
 	return n
 }
 
+func (s *Stack) Peek() *NodeTree {
+	return s.trees[len(s.trees)-1]
+}
+
 func (s *Stack) IsEmpty() bool {
 	return len(s.trees) == 0
 }
 
+// 前序遍历
 func PreOrder(n *NodeTree) {
 	if n == nil {
 		return
 	}
 	var s Stack
 	s.Push(n)
-
 	for !s.IsEmpty() {
-		if n.Right != nil {
-			s.Push(n.Right)
-		}
+		n = s.Pop()
+		fmt.Print(n.Val, " ")
 		if n.Left != nil {
 			s.Push(n.Left)
+		}
+		if n.Right != nil {
+			s.Push(n.Right)
 		}
 	}
 }
 
+// 中序遍历
 func InOrderTraversal(n *NodeTree) {
-	if n == nil {
-		return
-	}
 	var s Stack
-	cur := n
-	for cur != nil || !s.IsEmpty() {
-		if cur != nil {
-			s.Push(cur)
-			cur = cur.Left
+	for n != nil || !s.IsEmpty() {
+		for n != nil {
+			s.Push(n)
+			n = n.Left
+		}
+
+		if !s.IsEmpty() {
+			n = s.Pop()
+			fmt.Print(n.Val, " ")
+			n = n.Right
+		}
+	}
+}
+
+// 后序遍历
+func PostOrderTraversal(n *NodeTree) {
+	var s Stack
+	var last *NodeTree
+	for n != nil || !s.IsEmpty() {
+		for n != nil {
+			s.Push(n)
+			n = n.Left
+		}
+
+		n = s.Peek()
+		if n.Right == nil || n.Right == last {
+			fmt.Print(n.Val, " ")
+			s.Pop()
+			last = n
+			n = nil
 		} else {
-			cur = s.Pop()
-			fmt.Print(cur.Val, " ")
-			cur = cur.Right
+			n = n.Right
 		}
 	}
 }
