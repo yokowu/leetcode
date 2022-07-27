@@ -7,12 +7,16 @@ import (
 func main() {
 	t := &tree.NodeTree{
 		Left: &tree.NodeTree{
-			Val: 10,
+			Val:   10,
+			Left:  &tree.NodeTree{Val: 12},
+			Right: &tree.NodeTree{Val: 13},
 		},
 		Right: &tree.NodeTree{
-			Val: 11,
+			Val:   11,
+			Left:  &tree.NodeTree{Val: 14},
+			Right: &tree.NodeTree{Val: 15},
 		},
 		Val: 5,
 	}
-	tree.PreOrder(t)
+	tree.InOrderTraversal(t)
 }

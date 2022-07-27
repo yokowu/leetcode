@@ -76,13 +76,29 @@ func PreOrder(n *NodeTree) {
 	s.Push(n)
 
 	for !s.IsEmpty() {
-		n = s.Pop()
-		fmt.Print(n.Val, " ")
 		if n.Right != nil {
 			s.Push(n.Right)
 		}
 		if n.Left != nil {
 			s.Push(n.Left)
+		}
+	}
+}
+
+func InOrderTraversal(n *NodeTree) {
+	if n == nil {
+		return
+	}
+	var s Stack
+	cur := n
+	for cur != nil || !s.IsEmpty() {
+		if cur != nil {
+			s.Push(cur)
+			cur = cur.Left
+		} else {
+			cur = s.Pop()
+			fmt.Print(cur.Val, " ")
+			cur = cur.Right
 		}
 	}
 }
