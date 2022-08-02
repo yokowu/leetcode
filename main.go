@@ -5,11 +5,11 @@ import (
 )
 
 func main() {
-	t := &tree.NodeTree{
-		Left: &tree.NodeTree{
+	t := &tree.TreeNode{
+		Left: &tree.TreeNode{
 			Val: 10,
 		},
-		Right: &tree.NodeTree{
+		Right: &tree.TreeNode{
 			Val: 11,
 		},
 		Val: 5,

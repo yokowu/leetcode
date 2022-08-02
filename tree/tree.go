@@ -44,27 +44,27 @@ import "fmt"
 	3. 确定单层递归的逻辑: 确定每一层递归需要处理的信息
 */
 
-type NodeTree struct {
-	Left  *NodeTree
-	Right *NodeTree
+type TreeNode struct {
+	Left  *TreeNode
+	Right *TreeNode
 	Val   int
 }
 
 type Stack struct {
-	trees []*NodeTree
+	trees []*TreeNode
 }
 
-func (s *Stack) Push(n *NodeTree) {
+func (s *Stack) Push(n *TreeNode) {
 	s.trees = append(s.trees, n)
 }
 
-func (s *Stack) Pop() *NodeTree {
+func (s *Stack) Pop() *TreeNode {
 	n := s.trees[len(s.trees)-1]
 	s.trees = s.trees[:len(s.trees)-1]
 	return n
 }
 
-func (s *Stack) Peek() *NodeTree {
+func (s *Stack) Peek() *TreeNode {
 	return s.trees[len(s.trees)-1]
 }
 
@@ -73,7 +73,7 @@ func (s *Stack) IsEmpty() bool {
 }
 
 // 前序遍历
-func PreOrder(n *NodeTree) {
+func PreOrder(n *TreeNode) {
 	if n == nil {
 		return
 	}
@@ -92,7 +92,7 @@ func PreOrder(n *NodeTree) {
 }
 
 // 中序遍历
-func InOrderTraversal(n *NodeTree) {
+func InOrderTraversal(n *TreeNode) {
 	var s Stack
 	for n != nil || !s.IsEmpty() {
 		for n != nil {
@@ -109,9 +109,9 @@ func InOrderTraversal(n *NodeTree) {
 }
 
 // 后序遍历
-func PostOrderTraversal(n *NodeTree) {
+func PostOrderTraversal(n *TreeNode) {
 	var s Stack
-	var last *NodeTree
+	var last *TreeNode
 	for n != nil || !s.IsEmpty() {
 		for n != nil {
 			s.Push(n)
@@ -128,4 +128,16 @@ func PostOrderTraversal(n *NodeTree) {
 			n = n.Right
 		}
 	}
+}
+
+// 226. 翻转二叉树
+func InvertTree(root *TreeNode) *TreeNode {
+	if root == nil {
+		return nil
+	}
+
+	root.Left, root.Right = root.Right, root.Left
+	InvertTree(root.Left)
+	InvertTree(root.Right)
+	return root
 }
