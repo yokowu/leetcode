@@ -50,28 +50,6 @@ type TreeNode struct {
 	Val   int
 }
 
-type Stack struct {
-	trees []*TreeNode
-}
-
-func (s *Stack) Push(n *TreeNode) {
-	s.trees = append(s.trees, n)
-}
-
-func (s *Stack) Pop() *TreeNode {
-	n := s.trees[len(s.trees)-1]
-	s.trees = s.trees[:len(s.trees)-1]
-	return n
-}
-
-func (s *Stack) Peek() *TreeNode {
-	return s.trees[len(s.trees)-1]
-}
-
-func (s *Stack) IsEmpty() bool {
-	return len(s.trees) == 0
-}
-
 // 前序遍历
 func PreOrder(n *TreeNode) {
 	if n == nil {
@@ -126,6 +104,24 @@ func PostOrderTraversal(n *TreeNode) {
 			n = nil
 		} else {
 			n = n.Right
+		}
+	}
+}
+
+// 层序遍历
+func LevelTraversal(n *TreeNode) {
+	var q Queue
+	q.Enqueue(n)
+	for !q.IsEmpty() {
+		for i := 0; i < q.Len(); i++ {
+			n = q.Dequeue()
+			fmt.Print(n.Val, " ")
+			if n.Left != nil {
+				q.Enqueue(n.Left)
+			}
+			if n.Right != nil {
+				q.Enqueue(n.Right)
+			}
 		}
 	}
 }

@@ -7,12 +7,16 @@ import (
 func main() {
 	t := &tree.TreeNode{
 		Left: &tree.TreeNode{
-			Val: 10,
+			Val:   2,
+			Left:  &tree.TreeNode{Val: 4},
+			Right: &tree.TreeNode{Val: 5},
 		},
 		Right: &tree.TreeNode{
-			Val: 11,
+			Val:   3,
+			Left:  &tree.TreeNode{Val: 6},
+			Right: &tree.TreeNode{Val: 7},
 		},
-		Val: 5,
+		Val: 1,
 	}
-	tree.PostOrderTraversal(t)
+	tree.LevelTraversal(t)
 }
