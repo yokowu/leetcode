@@ -137,3 +137,31 @@ func InvertTree(root *TreeNode) *TreeNode {
 	InvertTree(root.Right)
 	return root
 }
+
+type Node struct {
+	Val   int
+	Left  *Node
+	Right *Node
+	Next  *Node
+}
+
+// 116. 填充每个节点的下一个右侧节点指针
+func Connect(root *Node) *Node {
+	if root == nil {
+		return nil
+	}
+
+	connectTraversal(root.Left, root.Right)
+	return root
+}
+
+func connectTraversal(n1, n2 *Node) {
+	if n1 == nil || n2 == nil {
+		return
+	}
+
+	n1.Next = n2
+	connectTraversal(n1.Left, n1.Right)
+	connectTraversal(n1.Right, n2.Left)
+	connectTraversal(n2.Left, n2.Right)
+}

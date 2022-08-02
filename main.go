@@ -19,4 +19,10 @@ func main() {
 		Val: 1,
 	}
 	tree.LevelTraversal(t)
+
+	tree.Connect(&tree.Node{
+		Left:  &tree.Node{Val: 2},
+		Right: &tree.Node{Val: 3},
+		Val:   1,
+	})
 }
