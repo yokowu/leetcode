@@ -189,3 +189,24 @@ func Flatten(root *TreeNode) {
 	}
 	p.Right = right
 }
+
+// 654. 最大二叉树
+func ConstructMaximumBinaryTree(nums []int) *TreeNode {
+	if len(nums) == 0 {
+		return nil
+	}
+
+	max := -1 << 31
+	i := 0
+	for j := 0; j < len(nums); j++ {
+		if nums[j] > max {
+			max = nums[j]
+			i = j
+		}
+	}
+
+	root := &TreeNode{Val: max}
+	root.Left = ConstructMaximumBinaryTree(nums[:i])
+	root.Right = ConstructMaximumBinaryTree(nums[i+1:])
+	return root
+}
