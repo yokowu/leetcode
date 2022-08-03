@@ -210,3 +210,24 @@ func ConstructMaximumBinaryTree(nums []int) *TreeNode {
 	root.Right = ConstructMaximumBinaryTree(nums[i+1:])
 	return root
 }
+
+// 105. 从前序与中序遍历序列构造二叉树
+func BuildTree(preorder, inorder []int) *TreeNode {
+	if len(preorder) == 0 {
+		return nil
+	}
+
+	val := preorder[0]
+	i := 0
+	for ; i < len(inorder); i++ {
+		if inorder[i] == val {
+			break
+		}
+	}
+
+	root := &TreeNode{Val: val}
+	size := len(inorder[:i]) + 1
+	root.Left = BuildTree(preorder[1:size], inorder[:i])
+	root.Right = BuildTree(preorder[size:], inorder[i+1:])
+	return root
+}
