@@ -1,6 +1,8 @@
 package tree
 
-import "fmt"
+import (
+	"fmt"
+)
 
 /*
 满二叉树:
@@ -164,4 +166,26 @@ func connectTraversal(n1, n2 *Node) {
 	connectTraversal(n1.Left, n1.Right)
 	connectTraversal(n1.Right, n2.Left)
 	connectTraversal(n2.Left, n2.Right)
+}
+
+// 114. 二叉树展开为链表
+func Flatten(root *TreeNode) {
+	if root == nil {
+		return
+	}
+
+	Flatten(root.Left)
+	Flatten(root.Right)
+
+	left := root.Left
+	right := root.Right
+
+	root.Left = nil
+	root.Right = left
+
+	p := root
+	for p.Right != nil {
+		p = p.Right
+	}
+	p.Right = right
 }
