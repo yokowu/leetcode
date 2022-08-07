@@ -231,3 +231,24 @@ func BuildTree(preorder, inorder []int) *TreeNode {
 	root.Right = BuildTree(preorder[size:], inorder[i+1:])
 	return root
 }
+
+// 106. 从中序与后序遍历序列构造二叉树
+func BuildTree2(inorder, postorder []int) *TreeNode {
+	if len(inorder) == 0 || len(postorder) == 0 {
+		return nil
+	}
+
+	val := postorder[len(postorder)-1]
+	i := 0
+	for ; i < len(inorder); i++ {
+		if inorder[i] == val {
+			break
+		}
+	}
+
+	return &TreeNode{
+		Val:   val,
+		Left:  BuildTree2(inorder[:i], postorder[:i]),
+		Right: BuildTree2(inorder[i+1:], postorder[i:len(postorder)-1]),
+	}
+}

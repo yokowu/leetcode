@@ -18,6 +18,6 @@ func main() {
 		},
 		Val: 1,
 	}
-	t = tree.ConstructMaximumBinaryTree([]int{3, 2, 1, 6, 0, 5})
+	t = tree.BuildTree2([]int{9, 3, 15, 20, 7}, []int{9, 15, 7, 20, 3})
 	tree.PreOrder(t)
 }
