@@ -252,3 +252,28 @@ func BuildTree2(inorder, postorder []int) *TreeNode {
 		Right: BuildTree2(inorder[i+1:], postorder[i:len(postorder)-1]),
 	}
 }
+
+// 889. 根据前序和后序遍历构造二叉树
+func ConstructFromPrePost(preorder, postorder []int) *TreeNode {
+	if len(preorder) == 0 {
+		return nil
+	}
+	val := preorder[0]
+	if len(preorder) == 1 {
+		return &TreeNode{Val: val}
+	}
+
+	nxt := preorder[1]
+	i := 0
+	for ; i < len(postorder); i++ {
+		if postorder[i] == nxt {
+			break
+		}
+	}
+	size := i + 1
+	return &TreeNode{
+		Val:   val,
+		Left:  ConstructFromPrePost(preorder[1:size+1], postorder[:size]),
+		Right: ConstructFromPrePost(preorder[size+1:], postorder[size:len(postorder)-1]),
+	}
+}

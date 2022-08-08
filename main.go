@@ -18,6 +18,6 @@ func main() {
 		},
 		Val: 1,
 	}
-	t = tree.BuildTree2([]int{9, 3, 15, 20, 7}, []int{9, 15, 7, 20, 3})
-	tree.PreOrder(t)
+	t = tree.BuildTree2([]int{1, 2, 4, 5, 3, 6, 7}, []int{4, 5, 2, 6, 7, 3, 1})
+	tree.LevelTraversal(t)
 }
