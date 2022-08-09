@@ -62,11 +62,11 @@ func PreOrder(n *TreeNode) {
 	for !s.IsEmpty() {
 		n = s.Pop()
 		fmt.Print(n.Val, " ")
-		if n.Left != nil {
-			s.Push(n.Left)
-		}
 		if n.Right != nil {
 			s.Push(n.Right)
+		}
+		if n.Left != nil {
+			s.Push(n.Left)
 		}
 	}
 }
