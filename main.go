@@ -17,9 +17,6 @@ func main() {
 		},
 		Val: 1,
 	}
-	s := tree.Serialize(t)
-	fmt.Println(s)
-
-	t = tree.Deserialize(s)
-	tree.PreOrder(t)
+	res := tree.LeverlOrderBottom(t)
+	fmt.Println(res)
 }

@@ -277,3 +277,36 @@ func ConstructFromPrePost(preorder, postorder []int) *TreeNode {
 		Right: ConstructFromPrePost(preorder[size+1:], postorder[size:len(postorder)-1]),
 	}
 }
+
+// 107. 二叉树的层序遍历 II
+func LeverlOrderBottom(root *TreeNode) [][]int {
+	if root == nil {
+		return nil
+	}
+
+	que := make([]*TreeNode, 0)
+	que = append(que, root)
+	res := [][]int{}
+	for len(que) > 0 {
+		tmp := make([]int, 0)
+		n := len(que)
+		for i := 0; i < n; i++ {
+			root = que[0]
+			que = que[1:]
+			tmp = append(tmp, root.Val)
+			if root.Left != nil {
+				que = append(que, root.Left)
+			}
+			if root.Right != nil {
+				que = append(que, root.Right)
+			}
+		}
+
+		if len(tmp) > 0 {
+			newRes := [][]int{tmp}
+			newRes = append(newRes, res...)
+			res = newRes
+		}
+	}
+	return res
+}
