@@ -8,6 +8,7 @@ import (
 
 func main() {
 	t := &tree.TreeNode{
+		Val: 1,
 		Left: &tree.TreeNode{
 			Val:   2,
 			Right: &tree.TreeNode{Val: 4},
@@ -15,8 +16,7 @@ func main() {
 		Right: &tree.TreeNode{
 			Val: 3,
 		},
-		Val: 1,
 	}
-	res := tree.LeverlOrderBottom(t)
+	res := tree.RightSideView(t)
 	fmt.Println(res)
 }

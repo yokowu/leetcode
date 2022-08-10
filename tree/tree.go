@@ -310,3 +310,30 @@ func LeverlOrderBottom(root *TreeNode) [][]int {
 	}
 	return res
 }
+
+// 199. 二叉树的右视图
+func RightSideView(root *TreeNode) []int {
+	if root == nil {
+		return nil
+	}
+
+	que := make([]*TreeNode, 0)
+	que = append(que, root)
+	res := []int{}
+	for len(que) > 0 {
+		n := len(que)
+		for i := 0; i < n; i++ {
+			root = que[0]
+			que = que[1:]
+
+			if root.Left != nil {
+				que = append(que, root.Left)
+			}
+			if root.Right != nil {
+				que = append(que, root.Right)
+			}
+		}
+		res = append(res, root.Val)
+	}
+	return res
+}
