@@ -17,6 +17,6 @@ func main() {
 			Val: 3,
 		},
 	}
-	res := tree.RightSideView(t)
+	res := tree.AverageOfLevels(t)
 	fmt.Println(res)
 }

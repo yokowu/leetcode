@@ -337,3 +337,34 @@ func RightSideView(root *TreeNode) []int {
 	}
 	return res
 }
+
+// 637. 二叉树的层平均值
+func AverageOfLevels(root *TreeNode) []float64 {
+	if root == nil {
+		return nil
+	}
+
+	que := make([]*TreeNode, 0)
+	que = append(que, root)
+	res := []float64{}
+	for len(que) > 0 {
+		n := len(que)
+		sum := 0
+		for i := 0; i < n; i++ {
+			root = que[0]
+			que = que[1:]
+			sum += root.Val
+
+			if root.Left != nil {
+				que = append(que, root.Left)
+			}
+			if root.Right != nil {
+				que = append(que, root.Right)
+			}
+		}
+
+		res = append(res, float64(sum)/float64(n))
+		sum = 0
+	}
+	return res
+}
