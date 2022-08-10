@@ -147,6 +147,11 @@ type Node struct {
 	Next  *Node
 }
 
+type NodeX struct {
+	Val      int
+	Children []*NodeX
+}
+
 // 116. 填充每个节点的下一个右侧节点指针
 func Connect(root *Node) *Node {
 	if root == nil {
@@ -365,6 +370,27 @@ func AverageOfLevels(root *TreeNode) []float64 {
 
 		res = append(res, float64(sum)/float64(n))
 		sum = 0
+	}
+	return res
+}
+
+// 429. N 叉树的层序遍历
+func LevelOrder(root *NodeX) [][]int {
+	if root == nil {
+		return nil
+	}
+	que := make([]*NodeX, 0)
+	que = append(que, root)
+	res := make([][]int, 0)
+	for len(que) > 0 {
+		tmp := make([]int, len(que))
+		tmpQ := make([]*NodeX, 0, len(que))
+		for i, v := range que {
+			tmp[i] = v.Val
+			tmpQ = append(tmpQ, v.Children...)
+		}
+		que = tmpQ
+		res = append(res, tmp)
 	}
 	return res
 }
