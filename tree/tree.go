@@ -500,3 +500,31 @@ func MaxDepth(root *TreeNode) int {
 	}
 	return max
 }
+
+// 111. 二叉树的最小深度
+func MinDepth(root *TreeNode) int {
+	if root == nil {
+		return 0
+	}
+	que := make([]*TreeNode, 0)
+	que = append(que, root)
+	max := 0
+	for len(que) > 0 {
+		n := len(que)
+		max++
+		for i := 0; i < n; i++ {
+			root = que[0]
+			que = que[1:]
+			if root.Left == nil && root.Right == nil {
+				return max
+			}
+			if root.Left != nil {
+				que = append(que, root.Left)
+			}
+			if root.Right != nil {
+				que = append(que, root.Right)
+			}
+		}
+	}
+	return max
+}
