@@ -446,3 +446,32 @@ func LargestValues(root *TreeNode) []int {
 	}
 	return res
 }
+
+// 101. 对称二叉树
+func IsSymmetric(root *TreeNode) bool {
+	if root == nil {
+		return true
+	}
+
+	que := make([]*TreeNode, 0)
+	que = append(que, root, root)
+	for len(que) > 0 {
+		n1, n2 := que[0], que[1]
+		que = que[2:]
+		if n1 == nil && n2 == nil {
+			continue
+		}
+		if n1 == nil || n2 == nil {
+			return false
+		}
+		if n1.Val != n2.Val {
+			return false
+		}
+
+		que = append(que, n1.Left)
+		que = append(que, n2.Right)
+		que = append(que, n1.Right)
+		que = append(que, n2.Left)
+	}
+	return true
+}

@@ -10,13 +10,24 @@ func main() {
 	t := &tree.TreeNode{
 		Val: 1,
 		Left: &tree.TreeNode{
-			Val:   2,
-			Right: &tree.TreeNode{Val: 4},
+			Val: 2,
+			Left: &tree.TreeNode{
+				Val: 3,
+			},
+			Right: &tree.TreeNode{
+				Val: 1,
+			},
 		},
 		Right: &tree.TreeNode{
-			Val: 3,
+			Val: 2,
+			Left: &tree.TreeNode{
+				Val: 1,
+			},
+			Right: &tree.TreeNode{
+				Val: 3,
+			},
 		},
 	}
-	res := tree.InvertTree(t)
+	res := tree.IsSymmetric(t)
 	fmt.Println(res)
 }
