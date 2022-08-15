@@ -134,9 +134,23 @@ func InvertTree(root *TreeNode) *TreeNode {
 		return nil
 	}
 
-	root.Left, root.Right = root.Right, root.Left
-	InvertTree(root.Left)
-	InvertTree(root.Right)
+	que := make([]*TreeNode, 0)
+	que = append(que, root)
+	for len(que) > 0 {
+		n := len(que)
+		for i := 0; i < n; i++ {
+			nn := que[0]
+			que = que[1:]
+			if nn == nil {
+				continue
+			}
+
+			nn.Left, nn.Right = nn.Right, nn.Left
+			que = append(que, nn.Left)
+			que = append(que, nn.Right)
+		}
+	}
+
 	return root
 }
 

@@ -17,6 +17,6 @@ func main() {
 			Val: 3,
 		},
 	}
-	res := tree.LargestValues(t)
+	res := tree.InvertTree(t)
 	fmt.Println(res)
 }
