@@ -158,19 +158,29 @@ func Connect(root *Node) *Node {
 		return nil
 	}
 
-	connectTraversal(root.Left, root.Right)
-	return root
-}
+	que := make([]*Node, 0)
+	que = append(que, root)
+	for len(que) > 0 {
+		n := len(que)
+		var pre *Node
+		for i := 0; i < n; i++ {
+			nn := que[0]
+			que = que[1:]
+			if pre != nil {
+				pre.Next = nn
+			}
+			pre = nn
 
-func connectTraversal(n1, n2 *Node) {
-	if n1 == nil || n2 == nil {
-		return
+			if nn.Left != nil {
+				que = append(que, nn.Left)
+			}
+			if nn.Right != nil {
+				que = append(que, nn.Right)
+			}
+		}
 	}
 
-	n1.Next = n2
-	connectTraversal(n1.Left, n1.Right)
-	connectTraversal(n1.Right, n2.Left)
-	connectTraversal(n2.Left, n2.Right)
+	return root
 }
 
 // 114. 二叉树展开为链表
