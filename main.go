@@ -28,6 +28,6 @@ func main() {
 			},
 		},
 	}
-	res := tree.IsSymmetric(t)
+	res := tree.MaxDepth(t)
 	fmt.Println(res)
 }

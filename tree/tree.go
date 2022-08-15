@@ -454,7 +454,7 @@ func IsSymmetric(root *TreeNode) bool {
 	}
 
 	que := make([]*TreeNode, 0)
-	que = append(que, root, root)
+	que = append(que, root.Left, root.Right)
 	for len(que) > 0 {
 		n1, n2 := que[0], que[1]
 		que = que[2:]
@@ -474,4 +474,29 @@ func IsSymmetric(root *TreeNode) bool {
 		que = append(que, n2.Left)
 	}
 	return true
+}
+
+// 104. 二叉树的最大深度
+func MaxDepth(root *TreeNode) int {
+	if root == nil {
+		return 0
+	}
+	que := make([]*TreeNode, 0)
+	que = append(que, root)
+	max := 0
+	for len(que) > 0 {
+		n := len(que)
+		for i := 0; i < n; i++ {
+			root = que[0]
+			que = que[1:]
+			if root.Left != nil {
+				que = append(que, root.Left)
+			}
+			if root.Right != nil {
+				que = append(que, root.Right)
+			}
+		}
+		max++
+	}
+	return max
 }
