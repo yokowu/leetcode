@@ -14,6 +14,10 @@ func (q *Queue) Dequeue() *TreeNode {
 	return n
 }
 
+func (q *Queue) Peek() *TreeNode {
+	return q.trees[0]
+}
+
 func (q *Queue) Len() int {
 	return len(q.trees)
 }

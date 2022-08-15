@@ -394,3 +394,31 @@ func LevelOrder(root *NodeX) [][]int {
 	}
 	return res
 }
+
+// 515. 在每个树行中找最大值
+func LargestValues(root *TreeNode) []int {
+	if root == nil {
+		return nil
+	}
+	var q Queue
+	q.Enqueue(root)
+	res := make([]int, 0)
+	for !q.IsEmpty() {
+		n := q.Len()
+		max := q.Peek().Val
+		for i := 0; i < n; i++ {
+			root = q.Dequeue()
+			if root.Val > max {
+				max = root.Val
+			}
+			if root.Left != nil {
+				q.Enqueue(root.Left)
+			}
+			if root.Right != nil {
+				q.Enqueue(root.Right)
+			}
+		}
+		res = append(res, max)
+	}
+	return res
+}

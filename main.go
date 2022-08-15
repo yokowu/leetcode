@@ -17,6 +17,6 @@ func main() {
 			Val: 3,
 		},
 	}
-	res := tree.AverageOfLevels(t)
+	res := tree.LargestValues(t)
 	fmt.Println(res)
 }
