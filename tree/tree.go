@@ -528,3 +528,25 @@ func MinDepth(root *TreeNode) int {
 	}
 	return max
 }
+
+// 404. 左叶子之和
+func SumOfLeftLeaves(root *TreeNode) int {
+	var s Stack
+	s.Push(root)
+	res := 0
+	for !s.IsEmpty() {
+		root = s.Pop()
+		if root.Left != nil &&
+			root.Left.Left == nil &&
+			root.Left.Right == nil {
+			res += root.Left.Val
+		}
+		if root.Left != nil {
+			s.Push(root.Left)
+		}
+		if root.Right != nil {
+			s.Push(root.Right)
+		}
+	}
+	return res
+}
