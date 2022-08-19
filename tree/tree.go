@@ -2,6 +2,7 @@ package tree
 
 import (
 	"fmt"
+	"strconv"
 )
 
 /*
@@ -527,6 +528,26 @@ func MinDepth(root *TreeNode) int {
 		}
 	}
 	return max
+}
+
+// 257. 二叉树的所有路径
+func BinaryTreePaths(root *TreeNode) []string {
+	var helper func(*TreeNode, string, *[]string)
+	helper = func(root *TreeNode, s string, res *[]string) {
+		if root.Left == nil && root.Right == nil {
+			s += strconv.Itoa(root.Val)
+			*res = append(*res, s)
+			return
+		}
+
+		s += strconv.Itoa(root.Val) + "->"
+		helper(root.Left, s, res)
+		helper(root.Right, s, res)
+	}
+
+	res := []string{}
+	helper(root, "", &res)
+	return res
 }
 
 // 404. 左叶子之和

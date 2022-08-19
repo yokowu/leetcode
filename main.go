@@ -28,6 +28,6 @@ func main() {
 			},
 		},
 	}
-	res := tree.MaxDepth(t)
+	res := tree.BinaryTreePaths(t)
 	fmt.Println(res)
 }
