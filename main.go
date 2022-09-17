@@ -3,31 +3,11 @@ package main
 import (
 	"fmt"
 
-	"github.com/yokowu/leetcode/tree"
+	"github.com/yokowu/leetcode/mysort"
 )
 
 func main() {
-	t := &tree.TreeNode{
-		Val: 1,
-		Left: &tree.TreeNode{
-			Val: 2,
-			Left: &tree.TreeNode{
-				Val: 3,
-			},
-			Right: &tree.TreeNode{
-				Val: 1,
-			},
-		},
-		Right: &tree.TreeNode{
-			Val: 2,
-			Left: &tree.TreeNode{
-				Val: 1,
-			},
-			Right: &tree.TreeNode{
-				Val: 3,
-			},
-		},
-	}
-	res := tree.MaxDepth(t)
-	fmt.Println(res)
+	a := []int{3, 2, 6, 10, 2, 4, 29, 34}
+	mysort.HeapSort(a)
+	fmt.Println(a[3-1])
 }

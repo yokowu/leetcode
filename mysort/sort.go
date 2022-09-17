@@ -1,7 +1,5 @@
 package mysort
 
-import "math"
-
 func swap(nums []int, i, j int) {
 	nums[i], nums[j] = nums[j], nums[i]
 }
@@ -50,8 +48,15 @@ func mergeSort(nums []int, L, R int) {
 	merge(nums, L, mid, R)
 }
 
+func min(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
+}
+
 func MergeSort2(nums []int) {
-	if nums == nil || len(nums) < 2 {
+	if len(nums) < 2 {
 		return
 	}
 
@@ -64,7 +69,7 @@ func MergeSort2(nums []int) {
 			if m >= n {
 				break
 			}
-			r := int(math.Min(float64(m+mergeSize), float64(n-1)))
+			r := min(m+mergeSize, n-1)
 			merge(nums, l, m, r)
 			l = r + 1
 		}
@@ -142,5 +147,36 @@ func Partition2(nums []int, target int) {
 			swap(nums, i, max)
 			max--
 		}
+	}
+}
+
+func HeapSort(nums []int) {
+	n := len(nums)
+	// build max heap
+	for i := n/2 - 1; i >= 0; i-- {
+		heapify(nums, i, n)
+	}
+
+	for i := n - 1; i >= 0; i-- {
+		swap(nums, 0, i)
+		n--
+		heapify(nums, 0, n)
+	}
+}
+
+func heapify(nums []int, i, n int) {
+	max := i
+	l := i*2 + 1
+	r := i*2 + 2
+	if l < n && nums[l] < nums[max] {
+		max = l
+	}
+	if r < n && nums[r] < nums[max] {
+		max = r
+	}
+
+	if i != max {
+		swap(nums, max, i)
+		heapify(nums, max, n)
 	}
 }
